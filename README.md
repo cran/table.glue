@@ -5,23 +5,34 @@
 
 <!-- badges: start -->
 
+[![CRAN
+checks](https://cranchecks.info/badges/summary/table.glue)](https://cran.r-project.org/web/checks/check_results_table.glue.html)
+[![](http://cranlogs.r-pkg.org/badges/last-month/table.glue?color=green)](https://cran.r-project.org/package=table.glue)
+[![DOI](https://zenodo.org/badge/291551786.svg)](https://zenodo.org/badge/latestdoi/291551786)
+[![Dependencies](https://tinyverse.netlify.com/badge/table.glue)](https://cran.r-project.org/package=table.glue)
+[![](https://codecov.io/gh/bcjaeger/table.glue/branch/master/graph/badge.svg)](https://codecov.io/gh/bcjaeger/table.glue)
 <!-- badges: end -->
 
-The goal of table.glue is to give you more control over the presentation
-of your data and also simplify the process of rounding and formatting
-data. The main idea is to create rounding specifications (starting with
-`round_spec()`) that can be plugged in, directly or through global
-options, to the `table_glue()` and `table_value()` functions.
+<!-- Note: 
+for code coverage, go to
+https://www.r-bloggers.com/2017/06/how-to-add-code-coverage-codecov-to-your-r-package/ and follow instructions
+-->
+
+The goal of `table.glue` is to give you more control over the
+presentation of your data and also simplify the process of rounding,
+formatting, and presenting your data. The main idea is to create
+rounding specifications (starting with `round_spec()`) that can be
+plugged in, directly or through global options, to the `table_glue()`
+and `table_value()` functions.
 
 ## Installation
 
-<!-- You can install the released version of table.glue from [CRAN](https://CRAN.R-project.org) with: -->
+You can install the released version of table.glue from
+[CRAN](https://CRAN.R-project.org) with:
 
-<!-- ``` r -->
-
-<!-- install.packages("table.glue") -->
-
-<!-- ``` -->
+``` r
+install.packages("table.glue")
+```
 
 You can install the development version from
 [GitHub](https://github.com/) with:
@@ -65,14 +76,14 @@ paste0("The mean (SD) of ", col_name, " is ",
 
 This gets the job done\! Still, the code may be a little hard to read
 for a user who isn’t a grizzled `paste()` veteran. This is where the
-`glue` package really shines.
+`glue` package is really useful.
 
 ### Use `glue()`
 
 Instead of using `paste()`, `glue()` lets us write everything in one
-string, surrounding R object with curly brackets ( { } ) tells R that
-the `glue()` function should print the value of that R object rather
-than the raw string. For instance,
+string, surrounding R object with curly brackets (i.e., “look at this
+{`R object`}” ) tells R that the `glue()` function should print the
+value of that R object rather than the raw string. For instance,
 
 ``` r
 
@@ -123,19 +134,8 @@ table_glue("the mean (SD) of {col_name} is {col_mean} ({col_sd})",
 #> [1] "the mean (SD) of mpg is 20 (6)"
 ```
 
-More details on the different rounding specification rules are given in
-the package vignette: “Rounding specifications” (not written yet; in
-progress). One final nice feature of `table.glue` is the ability to make
-any rounding specification the default rounding specification used by
-all of the `table_` functions, including `table_glue`:
-
-``` r
-
-# save your rounding specification, making it the default for table_glue
-default_rounder_set(rspec)
-
-# now you don't have to write rspec = rspec in table_glue()
-
-table_glue("the mean (SD) of {col_name} is {col_mean} ({col_sd})")
-#> [1] "the mean (SD) of mpg is 20 (6)"
-```
+rounding specifications can also be passed into global options so that
+`table_glue()` and `table_value()` will use the specification
+automatically (see the [Setting a default rounding
+specification](https://bcjaeger.github.io/table.glue/articles/default_rounder.html)
+vignette)

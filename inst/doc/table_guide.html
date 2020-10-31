@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Guide to table making</title>
+
+<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
+// v0.0.1
+// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
+
+document.addEventListener('DOMContentLoaded', function() {
+  const codeList = document.getElementsByClassName("sourceCode");
+  for (var i = 0; i < codeList.length; i++) {
+    var linkList = codeList[i].getElementsByTagName('a');
+    for (var j = 0; j < linkList.length; j++) {
+      if (linkList[j].innerHTML === "") {
+        linkList[j].setAttribute('aria-hidden', 'true');
+      }
+    }
+  }
+});
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      code.sourceCode > span { display: inline-block; line-height: 1.25; }
+  code.sourceCode > span { color: inherit; text-decoration: inherit; }
+  code.sourceCode > span:empty { height: 1.2em; }
+  .sourceCode { overflow: visible; }
+  code.sourceCode { white-space: pre; position: relative; }
+  div.sourceCode { margin: 1em 0; }
+  pre.sourceCode { margin: 0; }
+  @media screen {
+  div.sourceCode { overflow: auto; }
+  }
+  @media print {
+  code.sourceCode { white-space: pre-wrap; }
+  code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+  }
+  pre.numberSource code
+    { counter-reset: source-line 0; }
+  pre.numberSource code > span
+    { position: relative; left: -4em; counter-increment: source-line; }
+  pre.numberSource code > span > a:first-child::before
+    { content: counter(source-line);
+      position: relative; left: -1em; text-align: right; vertical-align: baseline;
+      border: none; display: inline-block;
+      -webkit-touch-callout: none; -webkit-user-select: none;
+      -khtml-user-select: none; -moz-user-select: none;
+      -ms-user-select: none; user-select: none;
+      padding: 0 4px; width: 4em;
+      color: #aaaaaa;
+    }
+  pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+  div.sourceCode
+    {   }
+  @media screen {
+  code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+  }
+  code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+  code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+  code span.at { color: #7d9029; } /* Attribute */
+  code span.bn { color: #40a070; } /* BaseN */
+  code span.bu { } /* BuiltIn */
+  code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+  code span.ch { color: #4070a0; } /* Char */
+  code span.cn { color: #880000; } /* Constant */
+  code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+  code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+  code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+  code span.dt { color: #902000; } /* DataType */
+  code span.dv { color: #40a070; } /* DecVal */
+  code span.er { color: #ff0000; font-weight: bold; } /* Error */
+  code span.ex { } /* Extension */
+  code span.fl { color: #40a070; } /* Float */
+  code span.fu { color: #06287e; } /* Function */
+  code span.im { } /* Import */
+  code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+  code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+  code span.op { color: #666666; } /* Operator */
+  code span.ot { color: #007020; } /* Other */
+  code span.pp { color: #bc7a00; } /* Preprocessor */
+  code span.sc { color: #4070a0; } /* SpecialChar */
+  code span.ss { color: #bb6688; } /* SpecialString */
+  code span.st { color: #4070a0; } /* String */
+  code span.va { color: #19177c; } /* Variable */
+  code span.vs { color: #4070a0; } /* VerbatimString */
+  code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+    </style>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Guide to table making</h1>
+
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="kw">library</span>(dplyr, <span class="dt">warn.conflicts =</span> <span class="ot">FALSE</span>)</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="kw">library</span>(tidyr)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="kw">library</span>(gt)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="kw">library</span>(table.glue)</span></code></pre></div>
+<div id="why-this-guide" class="section level1">
+<h1>Why this guide?</h1>
+<p>I have made a lot of tables and, if I’m being honest, they are not much fun. The primary reason I wrote <code>table.glue</code> was to help abstract away some of the really tedious aspects of dealing with tables, but there is also a basic system that <code>table.glue</code> fits into to make tables far less painful. I have boiled that system down into three main ideas</p>
+<ul>
+<li><p>Structuring data for a table</p></li>
+<li><p>Making table values</p></li>
+<li><p>Making an inline object</p></li>
+</ul>
+<p>If you find yourself working on a manuscript with lots of tables, I think you will find this framework to be extremely helpful.</p>
+</div>
+<div id="make-the-table-data" class="section level1">
+<h1>Make the table data</h1>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2"></a>starwars_smry &lt;-<span class="st"> </span><span class="kw">na.omit</span>(starwars) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="st">  </span><span class="kw">filter</span>(eye_color <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;blue&#39;</span>, <span class="st">&#39;brown&#39;</span>, <span class="st">&#39;hazel&#39;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="st">  </span><span class="kw">group_by</span>(sex, eye_color) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="st">  </span><span class="kw">summarize</span>(</span>
+<span id="cb2-6"><a href="#cb2-6"></a>    <span class="kw">across</span>(</span>
+<span id="cb2-7"><a href="#cb2-7"></a>      <span class="kw">c</span>(height, mass),</span>
+<span id="cb2-8"><a href="#cb2-8"></a>      <span class="dt">.fns =</span> <span class="kw">list</span>(</span>
+<span id="cb2-9"><a href="#cb2-9"></a>        <span class="dt">lwr =</span> <span class="op">~</span><span class="kw">quantile</span>(.x, <span class="dt">probs =</span> <span class="fl">0.25</span>),</span>
+<span id="cb2-10"><a href="#cb2-10"></a>        <span class="dt">est =</span> <span class="op">~</span><span class="kw">quantile</span>(.x, <span class="dt">probs =</span> <span class="fl">0.50</span>),</span>
+<span id="cb2-11"><a href="#cb2-11"></a>        <span class="dt">upr =</span> <span class="op">~</span><span class="kw">quantile</span>(.x, <span class="dt">probs =</span> <span class="fl">0.75</span>)</span>
+<span id="cb2-12"><a href="#cb2-12"></a>      )</span>
+<span id="cb2-13"><a href="#cb2-13"></a>    )</span>
+<span id="cb2-14"><a href="#cb2-14"></a>  )</span>
+<span id="cb2-15"><a href="#cb2-15"></a><span class="co">#&gt; `summarise()` regrouping output by &#39;sex&#39; (override with `.groups` argument)</span></span></code></pre></div>
+</div>
+<div id="make-the-table-values" class="section level1">
+<h1>Make the table values</h1>
+<p>Tabulated data should provide both a point estimate and a measure of uncertainty that goes along with the estimate, e.g. a 95% confidence interval. <code>table_glue()</code> is a nice function for putting together a point estimate and confidence interval. I use a magnitude based rounding specification to keep presentations consistent between height and mass.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2"></a>rspec &lt;-<span class="st"> </span><span class="kw">round_spec</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="st">  </span><span class="kw">round_half_even</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="st">  </span><span class="kw">round_using_magnitude</span>(<span class="dt">breaks =</span> <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">100</span>, <span class="ot">Inf</span>),</span>
+<span id="cb3-5"><a href="#cb3-5"></a>                        <span class="dt">digits =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="dv">1</span>,  <span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb3-6"><a href="#cb3-6"></a></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="kw">names</span>(rspec) &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&#39;table.glue&#39;</span>, <span class="kw">names</span>(rspec), <span class="dt">sep =</span> <span class="st">&#39;.&#39;</span>)</span>
+<span id="cb3-8"><a href="#cb3-8"></a></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="kw">options</span>(rspec)</span>
+<span id="cb3-10"><a href="#cb3-10"></a></span>
+<span id="cb3-11"><a href="#cb3-11"></a>starwars_tbl &lt;-<span class="st"> </span>starwars_smry <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="st">  </span><span class="kw">transmute</span>(</span>
+<span id="cb3-13"><a href="#cb3-13"></a>    sex, </span>
+<span id="cb3-14"><a href="#cb3-14"></a>    eye_color, </span>
+<span id="cb3-15"><a href="#cb3-15"></a>    <span class="dt">tbv_height =</span> <span class="kw">table_glue</span>(<span class="st">&quot;{height_est} ({height_lwr} - {height_upr})&quot;</span>),</span>
+<span id="cb3-16"><a href="#cb3-16"></a>    <span class="dt">tbv_mass =</span> <span class="kw">table_glue</span>(<span class="st">&quot;{mass_est} ({mass_lwr} - {mass_upr})&quot;</span>)</span>
+<span id="cb3-17"><a href="#cb3-17"></a>  )</span></code></pre></div>
+</div>
+<div id="make-the-table" class="section level1">
+<h1>Make the table</h1>
+<p>Keeping your data in a tidy table format makes it fairly straightforward to make a publication ready <code>gt</code> table. Most of the code is spent on re-naming things and labeling, which is how it should be.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2"></a>starwars_tbl <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="st">  </span><span class="kw">mutate</span>(</span>
+<span id="cb4-4"><a href="#cb4-4"></a>    <span class="dt">sex =</span> <span class="kw">recode</span>(sex, </span>
+<span id="cb4-5"><a href="#cb4-5"></a>                 <span class="st">&#39;female&#39;</span> =<span class="st"> &#39;Female characters&#39;</span>, </span>
+<span id="cb4-6"><a href="#cb4-6"></a>                 <span class="st">&#39;male&#39;</span>   =<span class="st"> &#39;Male characters&#39;</span>),</span>
+<span id="cb4-7"><a href="#cb4-7"></a>    <span class="dt">eye_color =</span> <span class="kw">recode</span>(eye_color, </span>
+<span id="cb4-8"><a href="#cb4-8"></a>                       <span class="dt">blue  =</span> <span class="st">&#39;Blue&#39;</span>,</span>
+<span id="cb4-9"><a href="#cb4-9"></a>                       <span class="dt">brown =</span> <span class="st">&#39;Brown&#39;</span>,</span>
+<span id="cb4-10"><a href="#cb4-10"></a>                       <span class="dt">hazel =</span> <span class="st">&#39;Hazel&#39;</span>)</span>
+<span id="cb4-11"><a href="#cb4-11"></a>  ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="st">  </span><span class="kw">gt</span>(<span class="dt">groupname_col =</span> <span class="st">&#39;sex&#39;</span>,  <span class="dt">rowname_col =</span> <span class="st">&#39;eye_color&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="st">  </span><span class="kw">cols_label</span>(<span class="dt">tbv_height =</span> <span class="st">&#39;Height, cm&#39;</span>, <span class="dt">tbv_mass =</span> <span class="st">&#39;Mass, kg&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="st">  </span><span class="kw">cols_align</span>(<span class="st">&#39;center&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-15"><a href="#cb4-15"></a><span class="st">  </span><span class="kw">tab_stubhead</span>(<span class="dt">label =</span> <span class="st">&#39;Eye color&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-16"><a href="#cb4-16"></a><span class="st">  </span><span class="kw">tab_spanner</span>(<span class="dt">label =</span> <span class="st">&#39;Median (25th, 75th percentile)&#39;</span>,</span>
+<span id="cb4-17"><a href="#cb4-17"></a>              <span class="dt">columns =</span> <span class="kw">starts_with</span>(<span class="st">&#39;tbv&#39;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb4-18"><a href="#cb4-18"></a><span class="st">  </span><span class="kw">tab_source_note</span>(<span class="kw">md</span>(<span class="st">&#39;For more on these data, see `?dplyr::starwars`&#39;</span>))</span></code></pre></div>
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#xtuslpjkku .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#xtuslpjkku .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xtuslpjkku .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#xtuslpjkku .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 4px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#xtuslpjkku .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xtuslpjkku .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xtuslpjkku .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#xtuslpjkku .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#xtuslpjkku .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#xtuslpjkku .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#xtuslpjkku .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#xtuslpjkku .gt_group_heading {
+  padding: 8px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xtuslpjkku .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xtuslpjkku .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#xtuslpjkku .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#xtuslpjkku .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#xtuslpjkku .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 12px;
+}
+
+#xtuslpjkku .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xtuslpjkku .gt_first_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+}
+
+#xtuslpjkku .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xtuslpjkku .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#xtuslpjkku .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#xtuslpjkku .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xtuslpjkku .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xtuslpjkku .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding: 4px;
+}
+
+#xtuslpjkku .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xtuslpjkku .gt_sourcenote {
+  font-size: 90%;
+  padding: 4px;
+}
+
+#xtuslpjkku .gt_left {
+  text-align: left;
+}
+
+#xtuslpjkku .gt_center {
+  text-align: center;
+}
+
+#xtuslpjkku .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#xtuslpjkku .gt_font_normal {
+  font-weight: normal;
+}
+
+#xtuslpjkku .gt_font_bold {
+  font-weight: bold;
+}
+
+#xtuslpjkku .gt_font_italic {
+  font-style: italic;
+}
+
+#xtuslpjkku .gt_super {
+  font-size: 65%;
+}
+
+#xtuslpjkku .gt_footnote_marks {
+  font-style: italic;
+  font-size: 65%;
+}
+</style>
+<div id="xtuslpjkku" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;"><table class="gt_table">
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1">Eye color</th>
+      <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2">
+        <span class="gt_column_spanner">Median (25th, 75th percentile)</span>
+      </th>
+    </tr>
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Height, cm</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1">Mass, kg</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr class="gt_group_heading_row">
+      <td colspan="3" class="gt_group_heading">Female characters</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left gt_stub">Blue</td>
+      <td class="gt_row gt_center">166 (166 - 168)</td>
+      <td class="gt_row gt_center">56.2 (53.1 - 65.6)</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left gt_stub">Brown</td>
+      <td class="gt_row gt_center">158 (154 - 161)</td>
+      <td class="gt_row gt_center">47.0 (46.0 - 48.0)</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left gt_stub">Hazel</td>
+      <td class="gt_row gt_center">178 (178 - 178)</td>
+      <td class="gt_row gt_center">55.0 (55.0 - 55.0)</td>
+    </tr>
+    <tr class="gt_group_heading_row">
+      <td colspan="3" class="gt_group_heading">Male characters</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left gt_stub">Blue</td>
+      <td class="gt_row gt_center">178 (175 - 188)</td>
+      <td class="gt_row gt_center">84.0 (79.0 - 112)</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left gt_stub">Brown</td>
+      <td class="gt_row gt_center">183 (179 - 184)</td>
+      <td class="gt_row gt_center">79.5 (78.8 - 81.0)</td>
+    </tr>
+    <tr>
+      <td class="gt_row gt_left gt_stub">Hazel</td>
+      <td class="gt_row gt_center">170 (170 - 170)</td>
+      <td class="gt_row gt_center">77.0 (77.0 - 77.0)</td>
+    </tr>
+  </tbody>
+  <tfoot class="gt_sourcenotes">
+    <tr>
+      <td class="gt_sourcenote" colspan="3">For more on these data, see <code>?dplyr::starwars</code></td>
+    </tr>
+  </tfoot>
+  
+</table></div>
+</div>
+<div id="make-an-inline-object" class="section level1">
+<h1>Make an inline object</h1>
+<p>It isn’t always enough to make the table. Sometimes (okay, probably always), you need to interpret it too. If you are writing a report in Markdown, it may feel natural to use inline code to write out your interpretation, but it may also become tedious and discouraging for a few reasons:</p>
+<ol style="list-style-type: decimal">
+<li><p>You may need to copy and paste a lot of code to get the numbers you want</p></li>
+<li><p>You may find it hard to maintain this code if you work with co-authors who suggest you report <em>different</em> numbers than the ones you wrote out in your draft.</p></li>
+</ol>
+<div id="access-table-data-directly" class="section level2">
+<h2>Access table data directly</h2>
+<p>Let’s take the approach where we access the table data directly first to highlight how this approach can get tedious. First I need to get the table values I am interested in, which is the heights of males and females</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2"></a>starwars_inline_female_brown_height &lt;-<span class="st"> </span>starwars_tbl <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="st">  </span><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &#39;female&#39;</span>, eye_color <span class="op">==</span><span class="st"> &#39;brown&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="st">  </span><span class="kw">pull</span>(tbv_height)</span>
+<span id="cb5-5"><a href="#cb5-5"></a></span>
+<span id="cb5-6"><a href="#cb5-6"></a>starwars_inline_female_blue_height &lt;-<span class="st"> </span>starwars_tbl <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="st">  </span><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &#39;female&#39;</span>, eye_color <span class="op">==</span><span class="st"> &#39;blue&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="st">  </span><span class="kw">pull</span>(tbv_height)</span>
+<span id="cb5-9"><a href="#cb5-9"></a></span>
+<span id="cb5-10"><a href="#cb5-10"></a>starwars_inline_female_hazel_height &lt;-<span class="st"> </span>starwars_tbl <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="st">  </span><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &#39;female&#39;</span>, eye_color <span class="op">==</span><span class="st"> &#39;hazel&#39;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="st">  </span><span class="kw">pull</span>(tbv_height)</span></code></pre></div>
+<p>Now I have all I need to write my sentence:</p>
+<p>“Female characters in Starwars with hazel eye color were, on average, taller than their counterparts with blue or brown eyes. The median (25<sup>th</sup>, 75<sup>th</sup> percentile) heights of these groups were 178 (178 - 178) for hazel, 166 (166 - 168) for blue, and 158 (154 - 161) for brown eyed female characters.”</p>
+<p>The great thing about writing results inline is that it drastically reduces the chance of a copy/paste error, which can get your paper rejected before it even goes out to reviewers. However, this approach also has limitations:</p>
+<ol style="list-style-type: decimal">
+<li><p>It still relies pretty heavily on copying and pasting your code, and you could make a mistake there (I often do).</p></li>
+<li><p>When you send this draft to your colleagues, one of them might suggest it would be more interesting to compare heights of male versus female characters with the same eye color, which means you will have to go back and create new inline objects.</p></li>
+<li><p>Naming the inline objects will get <em>extremely</em> tedious in complicated tables. For the relatively simple table above, you can see we have to use quite a lot of text to name things clearly.</p></li>
+</ol>
+</div>
+<div id="convert-table-data-into-a-hierarchical-list." class="section level2">
+<h2>convert table data into a hierarchical list.</h2>
+<p>Keeping your table data in a nested list will solve almost all of the limitations above (nothing will solve colleagues who like to change your paper, sorry).</p>
+<ol style="list-style-type: decimal">
+<li><p>A list can store all of your table data programmatically, so you never to copy/paste code.</p></li>
+<li><p>Hierarchical lists support names for each nested list, so your inline object will actually name itself!</p></li>
+</ol>
+<p><code>table.glue</code> provides a function to make your inline object. Assuming you have put your data into a tidy table format, this is all you need.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2"></a>starwars_inline &lt;-<span class="st"> </span>starwars_tbl <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="st">  </span><span class="kw">as_inline</span>(<span class="dt">tbl_variables =</span> <span class="kw">c</span>(<span class="st">&quot;sex&quot;</span>, <span class="st">&quot;eye_color&quot;</span>),</span>
+<span id="cb6-4"><a href="#cb6-4"></a>            <span class="dt">tbl_values =</span> <span class="kw">c</span>(<span class="st">&quot;tbv_height&quot;</span>, <span class="st">&quot;tbv_mass&quot;</span>))</span>
+<span id="cb6-5"><a href="#cb6-5"></a></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="kw">print</span>(starwars_inline)</span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="co">#&gt; $female</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="co">#&gt; $female$blue</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="co">#&gt; $female$blue$tbv_height</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="co">#&gt; [1] &quot;166 (166 - 168)&quot;</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="co">#&gt; </span></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="co">#&gt; $female$blue$tbv_mass</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="co">#&gt; [1] &quot;56.2 (53.1 - 65.6)&quot;</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="co">#&gt; </span></span>
+<span id="cb6-15"><a href="#cb6-15"></a><span class="co">#&gt; </span></span>
+<span id="cb6-16"><a href="#cb6-16"></a><span class="co">#&gt; $female$brown</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a><span class="co">#&gt; $female$brown$tbv_height</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a><span class="co">#&gt; [1] &quot;158 (154 - 161)&quot;</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a><span class="co">#&gt; </span></span>
+<span id="cb6-20"><a href="#cb6-20"></a><span class="co">#&gt; $female$brown$tbv_mass</span></span>
+<span id="cb6-21"><a href="#cb6-21"></a><span class="co">#&gt; [1] &quot;47.0 (46.0 - 48.0)&quot;</span></span>
+<span id="cb6-22"><a href="#cb6-22"></a><span class="co">#&gt; </span></span>
+<span id="cb6-23"><a href="#cb6-23"></a><span class="co">#&gt; </span></span>
+<span id="cb6-24"><a href="#cb6-24"></a><span class="co">#&gt; $female$hazel</span></span>
+<span id="cb6-25"><a href="#cb6-25"></a><span class="co">#&gt; $female$hazel$tbv_height</span></span>
+<span id="cb6-26"><a href="#cb6-26"></a><span class="co">#&gt; [1] &quot;178 (178 - 178)&quot;</span></span>
+<span id="cb6-27"><a href="#cb6-27"></a><span class="co">#&gt; </span></span>
+<span id="cb6-28"><a href="#cb6-28"></a><span class="co">#&gt; $female$hazel$tbv_mass</span></span>
+<span id="cb6-29"><a href="#cb6-29"></a><span class="co">#&gt; [1] &quot;55.0 (55.0 - 55.0)&quot;</span></span>
+<span id="cb6-30"><a href="#cb6-30"></a><span class="co">#&gt; </span></span>
+<span id="cb6-31"><a href="#cb6-31"></a><span class="co">#&gt; </span></span>
+<span id="cb6-32"><a href="#cb6-32"></a><span class="co">#&gt; </span></span>
+<span id="cb6-33"><a href="#cb6-33"></a><span class="co">#&gt; $male</span></span>
+<span id="cb6-34"><a href="#cb6-34"></a><span class="co">#&gt; $male$blue</span></span>
+<span id="cb6-35"><a href="#cb6-35"></a><span class="co">#&gt; $male$blue$tbv_height</span></span>
+<span id="cb6-36"><a href="#cb6-36"></a><span class="co">#&gt; [1] &quot;178 (175 - 188)&quot;</span></span>
+<span id="cb6-37"><a href="#cb6-37"></a><span class="co">#&gt; </span></span>
+<span id="cb6-38"><a href="#cb6-38"></a><span class="co">#&gt; $male$blue$tbv_mass</span></span>
+<span id="cb6-39"><a href="#cb6-39"></a><span class="co">#&gt; [1] &quot;84.0 (79.0 - 112)&quot;</span></span>
+<span id="cb6-40"><a href="#cb6-40"></a><span class="co">#&gt; </span></span>
+<span id="cb6-41"><a href="#cb6-41"></a><span class="co">#&gt; </span></span>
+<span id="cb6-42"><a href="#cb6-42"></a><span class="co">#&gt; $male$brown</span></span>
+<span id="cb6-43"><a href="#cb6-43"></a><span class="co">#&gt; $male$brown$tbv_height</span></span>
+<span id="cb6-44"><a href="#cb6-44"></a><span class="co">#&gt; [1] &quot;183 (179 - 184)&quot;</span></span>
+<span id="cb6-45"><a href="#cb6-45"></a><span class="co">#&gt; </span></span>
+<span id="cb6-46"><a href="#cb6-46"></a><span class="co">#&gt; $male$brown$tbv_mass</span></span>
+<span id="cb6-47"><a href="#cb6-47"></a><span class="co">#&gt; [1] &quot;79.5 (78.8 - 81.0)&quot;</span></span>
+<span id="cb6-48"><a href="#cb6-48"></a><span class="co">#&gt; </span></span>
+<span id="cb6-49"><a href="#cb6-49"></a><span class="co">#&gt; </span></span>
+<span id="cb6-50"><a href="#cb6-50"></a><span class="co">#&gt; $male$hazel</span></span>
+<span id="cb6-51"><a href="#cb6-51"></a><span class="co">#&gt; $male$hazel$tbv_height</span></span>
+<span id="cb6-52"><a href="#cb6-52"></a><span class="co">#&gt; [1] &quot;170 (170 - 170)&quot;</span></span>
+<span id="cb6-53"><a href="#cb6-53"></a><span class="co">#&gt; </span></span>
+<span id="cb6-54"><a href="#cb6-54"></a><span class="co">#&gt; $male$hazel$tbv_mass</span></span>
+<span id="cb6-55"><a href="#cb6-55"></a><span class="co">#&gt; [1] &quot;77.0 (77.0 - 77.0)&quot;</span></span></code></pre></div>
+<p>Some nice things about this:</p>
+<ol style="list-style-type: decimal">
+<li><p>We have <em>all</em> the table data in one place, so updating our text will <em>only</em> require updating the text and won’t require any changes to the code.</p></li>
+<li><p>The names of the list are generated using categories of table variables, so the inline object is clear and easy to navigate (especially if you are using tab-completion of names in Rstudio!)</p></li>
+<li><p>Lists can easily be concatenated, so you could take two or more tables and make them into one inline object. (see below)</p></li>
+</ol>
+</div>
+</div>
+<div id="concatenate-inline-objects" class="section level1">
+<h1>Concatenate inline objects</h1>
+<p>If you have twenty tables, you may prefer to keep their data in one (instead of twenty) inline objects. For the sake of keeping this brief, let’s just duplicate the first inline object and then show how concatenation would work:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>other_inline &lt;-<span class="st"> </span>starwars_inline</span></code></pre></div>
+<p>Now the concatenation:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a></span>
+<span id="cb8-2"><a href="#cb8-2"></a>inline =<span class="st"> </span><span class="kw">list</span>(<span class="dt">starwars =</span> starwars_inline,</span>
+<span id="cb8-3"><a href="#cb8-3"></a>              <span class="dt">other =</span> other_inline)</span>
+<span id="cb8-4"><a href="#cb8-4"></a></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="co"># now you can access all your table data in one place. Happy writing!</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a>inline<span class="op">$</span>starwars<span class="op">$</span>female<span class="op">$</span>blue<span class="op">$</span>tbv_height</span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="co">#&gt; [1] &quot;166 (166 - 168)&quot;</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>inline<span class="op">$</span>other<span class="op">$</span>male<span class="op">$</span>blue<span class="op">$</span>tbv_height</span>
+<span id="cb8-9"><a href="#cb8-9"></a><span class="co">#&gt; [1] &quot;178 (175 - 188)&quot;</span></span></code></pre></div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
