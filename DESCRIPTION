@@ -1,11 +1,11 @@
 Package: table.glue
 Title: Make and Apply Customized Rounding Specifications for Tables
-Version: 0.0.2
+Version: 0.0.3
 Authors@R: 
     c(person(given = "Byron",
              family = "Jaeger",
              role = c("aut", "cre"),
-             email = "bcjaeger@uab.edu",
+             email = "bjaeger@wakehealth.edu",
              comment = c(ORCID = "0000-0001-7399-2299")))
 Description: Translate double and integer valued data into
     character values formatted for tabulation in manuscripts
@@ -13,7 +13,7 @@ Description: Translate double and integer valued data into
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3
 Suggests: testthat, covr, knitr, rmarkdown, magrittr, dplyr, tidyr,
         tibble, gt
 Imports: glue, stringi
@@ -22,8 +22,8 @@ BugReports: https://github.com/bcjaeger/table.glue/issues
 VignetteBuilder: knitr
 Depends: R (>= 2.10)
 NeedsCompilation: no
-Packaged: 2020-10-31 17:04:41 UTC; bcjaeger
+Packaged: 2023-02-06 14:04:38 UTC; bjaeger
 Author: Byron Jaeger [aut, cre] (<https://orcid.org/0000-0001-7399-2299>)
-Maintainer: Byron Jaeger <bcjaeger@uab.edu>
+Maintainer: Byron Jaeger <bjaeger@wakehealth.edu>
 Repository: CRAN
-Date/Publication: 2020-10-31 17:20:02 UTC
+Date/Publication: 2023-02-07 08:30:02 UTC
