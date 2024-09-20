@@ -22,8 +22,8 @@
 #'   should be formatted together. Users can specify anything they like
 #'   as long as they use the terms `estimate` and `error` to refer to the
 #'   estimate and error values, respectively, and encapsulate those terms
-#'   inside of curly brackets, i.e., { } . For instance, if estimate = 1.23
-#'   and error = 0.45, then `form` = "{estimate} ({error})" will return
+#'   inside of curly brackets, i.e., \{ \} . For instance, if estimate = 1.23
+#'   and error = 0.45, then `form` = "\{estimate\} (\{error\})" will return
 #'   "1.2 (0.45)", a common format used in  presentation of the point and
 #'   error combination. The default `form` gives output in the form of
 #'   1.2 +/- 0.45.
@@ -161,7 +161,7 @@ table_ester <- function(estimate,
   .envir <- list(estimate = .estimate, error = .error)
 
   as.character(
-    do.call(glue::glue, args = list(form, .envir = .envir))
+    do.call(glue::glue_data, args = list(form, .x = .envir))
   )
 
 }
@@ -267,7 +267,7 @@ table_estin <- function(estimate,
   .envir <- list(estimate = .estimate, lower = .lower, upper = .upper)
 
   as.character(
-    do.call(glue::glue, args = list(form, .envir = .envir))
+    do.call(glue::glue_data, args = list(form, .x = .envir))
   )
 
 }

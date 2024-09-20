@@ -340,11 +340,11 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(table.glue)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(dplyr, <span class="at">warn.conflicts =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">library</span>(gt)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">library</span>(table.glue)</span></code></pre></div>
 <div id="why-this-guide" class="section level1">
 <h1>Why this guide?</h1>
 <p>I have made a lot of tables and, if I’m being honest, they are not
@@ -363,22 +363,22 @@ think you will find this framework to be extremely helpful.</p>
 </div>
 <div id="make-the-table-data" class="section level1">
 <h1>Make the table data</h1>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>starwars_smry <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(starwars) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(eye_color <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&#39;blue&#39;</span>, <span class="st">&#39;brown&#39;</span>, <span class="st">&#39;hazel&#39;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(sex, eye_color) <span class="sc">%&gt;%</span> </span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>      <span class="fu">c</span>(height, mass),</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">.fns =</span> <span class="fu">list</span>(</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="at">lwr =</span> <span class="sc">~</span><span class="fu">quantile</span>(.x, <span class="at">probs =</span> <span class="fl">0.25</span>),</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="at">est =</span> <span class="sc">~</span><span class="fu">quantile</span>(.x, <span class="at">probs =</span> <span class="fl">0.50</span>),</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="at">upr =</span> <span class="sc">~</span><span class="fu">quantile</span>(.x, <span class="at">probs =</span> <span class="fl">0.75</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; `summarise()` has grouped output by &#39;sex&#39;. You can override using the `.groups`</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; argument.</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>starwars_smry <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(starwars) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>  <span class="fu">filter</span>(eye_color <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&#39;blue&#39;</span>, <span class="st">&#39;brown&#39;</span>, <span class="st">&#39;hazel&#39;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>  <span class="fu">group_by</span>(sex, eye_color) <span class="sc">%&gt;%</span> </span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>  <span class="fu">summarize</span>(</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>    <span class="fu">across</span>(</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>      <span class="fu">c</span>(height, mass),</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>      <span class="at">.fns =</span> <span class="fu">list</span>(</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>        <span class="at">lwr =</span> <span class="sc">~</span><span class="fu">quantile</span>(.x, <span class="at">probs =</span> <span class="fl">0.25</span>),</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>        <span class="at">est =</span> <span class="sc">~</span><span class="fu">quantile</span>(.x, <span class="at">probs =</span> <span class="fl">0.50</span>),</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>        <span class="at">upr =</span> <span class="sc">~</span><span class="fu">quantile</span>(.x, <span class="at">probs =</span> <span class="fl">0.75</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>      )</span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>    )</span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>  )</span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a><span class="co">#&gt; `summarise()` has grouped output by &#39;sex&#39;. You can override using the `.groups`</span></span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a><span class="co">#&gt; argument.</span></span></code></pre></div>
 </div>
 <div id="make-the-table-values" class="section level1">
 <h1>Make the table values</h1>
@@ -388,23 +388,23 @@ interval. <code>table_glue()</code> is a nice function for putting
 together a point estimate and confidence interval. I use a magnitude
 based rounding specification to keep presentations consistent between
 height and mass.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>rspec <span class="ot">&lt;-</span> <span class="fu">round_spec</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round_half_even</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">round_using_magnitude</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">100</span>, <span class="cn">Inf</span>),</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>,  <span class="dv">1</span>, <span class="dv">0</span>))</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(rspec) <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&#39;table.glue&#39;</span>, <span class="fu">names</span>(rspec), <span class="at">sep =</span> <span class="st">&#39;.&#39;</span>)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(rspec)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>starwars_tbl <span class="ot">&lt;-</span> starwars_smry <span class="sc">%&gt;%</span> </span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    sex, </span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    eye_color, </span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">tbv_height =</span> <span class="fu">table_glue</span>(<span class="st">&quot;{height_est} ({height_lwr} - {height_upr})&quot;</span>),</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="at">tbv_mass =</span> <span class="fu">table_glue</span>(<span class="st">&quot;{mass_est} ({mass_lwr} - {mass_upr})&quot;</span>)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>rspec <span class="ot">&lt;-</span> <span class="fu">round_spec</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>  <span class="fu">round_half_even</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>  <span class="fu">round_using_magnitude</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">100</span>, <span class="cn">Inf</span>),</span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a>                        <span class="at">digits =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">1</span>,  <span class="dv">1</span>, <span class="dv">0</span>))</span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="fu">names</span>(rspec) <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&#39;table.glue&#39;</span>, <span class="fu">names</span>(rspec), <span class="at">sep =</span> <span class="st">&#39;.&#39;</span>)</span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="fu">options</span>(rspec)</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a>starwars_tbl <span class="ot">&lt;-</span> starwars_smry <span class="sc">%&gt;%</span> </span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>  <span class="fu">transmute</span>(</span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>    sex, </span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a>    eye_color, </span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a>    <span class="at">tbv_height =</span> <span class="fu">table_glue</span>(<span class="st">&quot;{height_est} ({height_lwr} - {height_upr})&quot;</span>),</span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a>    <span class="at">tbv_mass =</span> <span class="fu">table_glue</span>(<span class="st">&quot;{mass_est} ({mass_lwr} - {mass_upr})&quot;</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a>  )</span></code></pre></div>
 </div>
 <div id="make-the-table" class="section level1">
 <h1>Make the table</h1>
@@ -412,31 +412,41 @@ height and mass.</p>
 straightforward to make a publication ready <code>gt</code> table. Most
 of the code is spent on re-naming things and labeling, which is how it
 should be.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>starwars_tbl <span class="sc">%&gt;%</span> </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">sex =</span> <span class="fu">recode</span>(sex, </span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;female&#39;</span> <span class="ot">=</span> <span class="st">&#39;Female characters&#39;</span>, </span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>                 <span class="st">&#39;male&#39;</span>   <span class="ot">=</span> <span class="st">&#39;Male characters&#39;</span>),</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">eye_color =</span> <span class="fu">recode</span>(eye_color, </span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">blue  =</span> <span class="st">&#39;Blue&#39;</span>,</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>                       <span class="at">brown =</span> <span class="st">&#39;Brown&#39;</span>,</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>                       <span class="at">hazel =</span> <span class="st">&#39;Hazel&#39;</span>)</span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">groupname_col =</span> <span class="st">&#39;sex&#39;</span>,  <span class="at">rowname_col =</span> <span class="st">&#39;eye_color&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_label</span>(<span class="at">tbv_height =</span> <span class="st">&#39;Height, cm&#39;</span>, <span class="at">tbv_mass =</span> <span class="st">&#39;Mass, kg&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cols_align</span>(<span class="st">&#39;center&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_stubhead</span>(<span class="at">label =</span> <span class="st">&#39;Eye color&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_spanner</span>(<span class="at">label =</span> <span class="st">&#39;Median (25th, 75th percentile)&#39;</span>,</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>              <span class="at">columns =</span> <span class="fu">starts_with</span>(<span class="st">&#39;tbv&#39;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tab_source_note</span>(<span class="fu">md</span>(<span class="st">&#39;For more on these data, see `?dplyr::starwars`&#39;</span>))</span></code></pre></div>
-<div id="ewqtsxctti" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>html {
-font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>starwars_tbl <span class="sc">%&gt;%</span> </span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>    <span class="at">sex =</span> <span class="fu">recode</span>(sex, </span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>                 <span class="st">&#39;female&#39;</span> <span class="ot">=</span> <span class="st">&#39;Female characters&#39;</span>, </span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>                 <span class="st">&#39;male&#39;</span>   <span class="ot">=</span> <span class="st">&#39;Male characters&#39;</span>),</span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a>    <span class="at">eye_color =</span> <span class="fu">recode</span>(eye_color, </span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a>                       <span class="at">blue  =</span> <span class="st">&#39;Blue&#39;</span>,</span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a>                       <span class="at">brown =</span> <span class="st">&#39;Brown&#39;</span>,</span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a>                       <span class="at">hazel =</span> <span class="st">&#39;Hazel&#39;</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a>  ) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a>  <span class="fu">gt</span>(<span class="at">groupname_col =</span> <span class="st">&#39;sex&#39;</span>,  <span class="at">rowname_col =</span> <span class="st">&#39;eye_color&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a>  <span class="fu">cols_label</span>(<span class="at">tbv_height =</span> <span class="st">&#39;Height, cm&#39;</span>, <span class="at">tbv_mass =</span> <span class="st">&#39;Mass, kg&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a>  <span class="fu">cols_align</span>(<span class="st">&#39;center&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a>  <span class="fu">tab_stubhead</span>(<span class="at">label =</span> <span class="st">&#39;Eye color&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-16"><a href="#cb4-16" tabindex="-1"></a>  <span class="fu">tab_spanner</span>(<span class="at">label =</span> <span class="st">&#39;Median (25th, 75th percentile)&#39;</span>,</span>
+<span id="cb4-17"><a href="#cb4-17" tabindex="-1"></a>              <span class="at">columns =</span> <span class="fu">starts_with</span>(<span class="st">&#39;tbv&#39;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-18"><a href="#cb4-18" tabindex="-1"></a>  <span class="fu">tab_source_note</span>(<span class="fu">md</span>(<span class="st">&#39;For more on these data, see `?dplyr::starwars`&#39;</span>))</span></code></pre></div>
+<div id="vcoaayqicd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#vcoaayqicd table {
+font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
 }
-#ewqtsxctti .gt_table {
+#vcoaayqicd thead, #vcoaayqicd tbody, #vcoaayqicd tfoot, #vcoaayqicd tr, #vcoaayqicd td, #vcoaayqicd th {
+border-style: none;
+}
+#vcoaayqicd p {
+margin: 0;
+padding: 0;
+}
+#vcoaayqicd .gt_table {
 display: table;
 border-collapse: collapse;
+line-height: normal;
 margin-left: auto;
 margin-right: auto;
 color: #333333;
@@ -458,22 +468,11 @@ border-left-style: none;
 border-left-width: 2px;
 border-left-color: #D3D3D3;
 }
-#ewqtsxctti .gt_heading {
-background-color: #FFFFFF;
-text-align: center;
-border-bottom-color: #FFFFFF;
-border-left-style: none;
-border-left-width: 1px;
-border-left-color: #D3D3D3;
-border-right-style: none;
-border-right-width: 1px;
-border-right-color: #D3D3D3;
-}
-#ewqtsxctti .gt_caption {
+#vcoaayqicd .gt_caption {
 padding-top: 4px;
 padding-bottom: 4px;
 }
-#ewqtsxctti .gt_title {
+#vcoaayqicd .gt_title {
 color: #333333;
 font-size: 125%;
 font-weight: initial;
@@ -484,23 +483,34 @@ padding-right: 5px;
 border-bottom-color: #FFFFFF;
 border-bottom-width: 0;
 }
-#ewqtsxctti .gt_subtitle {
+#vcoaayqicd .gt_subtitle {
 color: #333333;
 font-size: 85%;
 font-weight: initial;
-padding-top: 0;
-padding-bottom: 6px;
+padding-top: 3px;
+padding-bottom: 5px;
 padding-left: 5px;
 padding-right: 5px;
 border-top-color: #FFFFFF;
 border-top-width: 0;
 }
-#ewqtsxctti .gt_bottom_border {
+#vcoaayqicd .gt_heading {
+background-color: #FFFFFF;
+text-align: center;
+border-bottom-color: #FFFFFF;
+border-left-style: none;
+border-left-width: 1px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 1px;
+border-right-color: #D3D3D3;
+}
+#vcoaayqicd .gt_bottom_border {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#ewqtsxctti .gt_col_headings {
+#vcoaayqicd .gt_col_headings {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -514,7 +524,7 @@ border-right-style: none;
 border-right-width: 1px;
 border-right-color: #D3D3D3;
 }
-#ewqtsxctti .gt_col_heading {
+#vcoaayqicd .gt_col_heading {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -533,7 +543,7 @@ padding-left: 5px;
 padding-right: 5px;
 overflow-x: hidden;
 }
-#ewqtsxctti .gt_column_spanner_outer {
+#vcoaayqicd .gt_column_spanner_outer {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -544,13 +554,13 @@ padding-bottom: 0;
 padding-left: 4px;
 padding-right: 4px;
 }
-#ewqtsxctti .gt_column_spanner_outer:first-child {
+#vcoaayqicd .gt_column_spanner_outer:first-child {
 padding-left: 0;
 }
-#ewqtsxctti .gt_column_spanner_outer:last-child {
+#vcoaayqicd .gt_column_spanner_outer:last-child {
 padding-right: 0;
 }
-#ewqtsxctti .gt_column_spanner {
+#vcoaayqicd .gt_column_spanner {
 border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
@@ -561,7 +571,10 @@ overflow-x: hidden;
 display: inline-block;
 width: 100%;
 }
-#ewqtsxctti .gt_group_heading {
+#vcoaayqicd .gt_spanner_row {
+border-bottom-style: hidden;
+}
+#vcoaayqicd .gt_group_heading {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -586,7 +599,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 text-align: left;
 }
-#ewqtsxctti .gt_empty_group_heading {
+#vcoaayqicd .gt_empty_group_heading {
 padding: 0.5px;
 color: #333333;
 background-color: #FFFFFF;
@@ -600,13 +613,13 @@ border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 vertical-align: middle;
 }
-#ewqtsxctti .gt_from_md > :first-child {
+#vcoaayqicd .gt_from_md > :first-child {
 margin-top: 0;
 }
-#ewqtsxctti .gt_from_md > :last-child {
+#vcoaayqicd .gt_from_md > :last-child {
 margin-bottom: 0;
 }
-#ewqtsxctti .gt_row {
+#vcoaayqicd .gt_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -624,7 +637,7 @@ border-right-color: #D3D3D3;
 vertical-align: middle;
 overflow-x: hidden;
 }
-#ewqtsxctti .gt_stub {
+#vcoaayqicd .gt_stub {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -636,7 +649,7 @@ border-right-color: #D3D3D3;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ewqtsxctti .gt_stub_row_group {
+#vcoaayqicd .gt_stub_row_group {
 color: #333333;
 background-color: #FFFFFF;
 font-size: 100%;
@@ -649,10 +662,13 @@ padding-left: 5px;
 padding-right: 5px;
 vertical-align: top;
 }
-#ewqtsxctti .gt_row_group_first td {
+#vcoaayqicd .gt_row_group_first td {
 border-top-width: 2px;
 }
-#ewqtsxctti .gt_summary_row {
+#vcoaayqicd .gt_row_group_first th {
+border-top-width: 2px;
+}
+#vcoaayqicd .gt_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -661,14 +677,14 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ewqtsxctti .gt_first_summary_row {
+#vcoaayqicd .gt_first_summary_row {
 border-top-style: solid;
 border-top-color: #D3D3D3;
 }
-#ewqtsxctti .gt_first_summary_row.thick {
+#vcoaayqicd .gt_first_summary_row.thick {
 border-top-width: 2px;
 }
-#ewqtsxctti .gt_last_summary_row {
+#vcoaayqicd .gt_last_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -677,7 +693,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#ewqtsxctti .gt_grand_summary_row {
+#vcoaayqicd .gt_grand_summary_row {
 color: #333333;
 background-color: #FFFFFF;
 text-transform: inherit;
@@ -686,7 +702,7 @@ padding-bottom: 8px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ewqtsxctti .gt_first_grand_summary_row {
+#vcoaayqicd .gt_first_grand_summary_row {
 padding-top: 8px;
 padding-bottom: 8px;
 padding-left: 5px;
@@ -695,10 +711,19 @@ border-top-style: double;
 border-top-width: 6px;
 border-top-color: #D3D3D3;
 }
-#ewqtsxctti .gt_striped {
+#vcoaayqicd .gt_last_grand_summary_row_top {
+padding-top: 8px;
+padding-bottom: 8px;
+padding-left: 5px;
+padding-right: 5px;
+border-bottom-style: double;
+border-bottom-width: 6px;
+border-bottom-color: #D3D3D3;
+}
+#vcoaayqicd .gt_striped {
 background-color: rgba(128, 128, 128, 0.05);
 }
-#ewqtsxctti .gt_table_body {
+#vcoaayqicd .gt_table_body {
 border-top-style: solid;
 border-top-width: 2px;
 border-top-color: #D3D3D3;
@@ -706,7 +731,7 @@ border-bottom-style: solid;
 border-bottom-width: 2px;
 border-bottom-color: #D3D3D3;
 }
-#ewqtsxctti .gt_footnotes {
+#vcoaayqicd .gt_footnotes {
 color: #333333;
 background-color: #FFFFFF;
 border-bottom-style: none;
@@ -719,92 +744,91 @@ border-right-style: none;
 border-right-width: 2px;
 border-right-color: #D3D3D3;
 }
-#ewqtsxctti .gt_footnote {
+#vcoaayqicd .gt_footnote {
 margin: 0px;
-font-size: 90%;
-padding-left: 4px;
-padding-right: 4px;
-padding-left: 5px;
-padding-right: 5px;
-}
-#ewqtsxctti .gt_sourcenotes {
-color: #333333;
-background-color: #FFFFFF;
-border-bottom-style: none;
-border-bottom-width: 2px;
-border-bottom-color: #D3D3D3;
-border-left-style: none;
-border-left-width: 2px;
-border-left-color: #D3D3D3;
-border-right-style: none;
-border-right-width: 2px;
-border-right-color: #D3D3D3;
-}
-#ewqtsxctti .gt_sourcenote {
 font-size: 90%;
 padding-top: 4px;
 padding-bottom: 4px;
 padding-left: 5px;
 padding-right: 5px;
 }
-#ewqtsxctti .gt_left {
+#vcoaayqicd .gt_sourcenotes {
+color: #333333;
+background-color: #FFFFFF;
+border-bottom-style: none;
+border-bottom-width: 2px;
+border-bottom-color: #D3D3D3;
+border-left-style: none;
+border-left-width: 2px;
+border-left-color: #D3D3D3;
+border-right-style: none;
+border-right-width: 2px;
+border-right-color: #D3D3D3;
+}
+#vcoaayqicd .gt_sourcenote {
+font-size: 90%;
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 5px;
+padding-right: 5px;
+}
+#vcoaayqicd .gt_left {
 text-align: left;
 }
-#ewqtsxctti .gt_center {
+#vcoaayqicd .gt_center {
 text-align: center;
 }
-#ewqtsxctti .gt_right {
+#vcoaayqicd .gt_right {
 text-align: right;
 font-variant-numeric: tabular-nums;
 }
-#ewqtsxctti .gt_font_normal {
+#vcoaayqicd .gt_font_normal {
 font-weight: normal;
 }
-#ewqtsxctti .gt_font_bold {
+#vcoaayqicd .gt_font_bold {
 font-weight: bold;
 }
-#ewqtsxctti .gt_font_italic {
+#vcoaayqicd .gt_font_italic {
 font-style: italic;
 }
-#ewqtsxctti .gt_super {
+#vcoaayqicd .gt_super {
 font-size: 65%;
 }
-#ewqtsxctti .gt_footnote_marks {
-font-style: italic;
-font-weight: normal;
+#vcoaayqicd .gt_footnote_marks {
 font-size: 75%;
 vertical-align: 0.4em;
+position: initial;
 }
-#ewqtsxctti .gt_asterisk {
+#vcoaayqicd .gt_asterisk {
 font-size: 100%;
 vertical-align: 0;
 }
-#ewqtsxctti .gt_indent_1 {
+#vcoaayqicd .gt_indent_1 {
 text-indent: 5px;
 }
-#ewqtsxctti .gt_indent_2 {
+#vcoaayqicd .gt_indent_2 {
 text-indent: 10px;
 }
-#ewqtsxctti .gt_indent_3 {
+#vcoaayqicd .gt_indent_3 {
 text-indent: 15px;
 }
-#ewqtsxctti .gt_indent_4 {
+#vcoaayqicd .gt_indent_4 {
 text-indent: 20px;
 }
-#ewqtsxctti .gt_indent_5 {
+#vcoaayqicd .gt_indent_5 {
 text-indent: 25px;
 }
 </style>
-<table class="gt_table">
-  
-  <thead class="gt_col_headings">
-    <tr>
+<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <thead>
+    
+    <tr class="gt_col_headings gt_spanner_row">
       <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="2" colspan="1" scope="col" id="Eye color">Eye color</th>
       <th class="gt_center gt_columns_top_border gt_column_spanner_outer" rowspan="1" colspan="2" scope="colgroup" id="Median (25th, 75th percentile)">
         <span class="gt_column_spanner">Median (25th, 75th percentile)</span>
       </th>
     </tr>
-    <tr>
+    <tr class="gt_col_headings">
       <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Height, cm">Height, cm</th>
       <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="Mass, kg">Mass, kg</th>
     </tr>
@@ -817,7 +841,7 @@ text-indent: 25px;
 <td headers="Female characters stub_1_1 tbv_height" class="gt_row gt_center">166 (166 - 168)</td>
 <td headers="Female characters stub_1_1 tbv_mass" class="gt_row gt_center">56.2 (53.1 - 65.6)</td></tr>
     <tr><th id="stub_1_2" scope="row" class="gt_row gt_center gt_stub">Brown</th>
-<td headers="Female characters stub_1_2 tbv_height" class="gt_row gt_center">158 (154 - 161)</td>
+<td headers="Female characters stub_1_2 tbv_height" class="gt_row gt_center">168 (159 - 176)</td>
 <td headers="Female characters stub_1_2 tbv_mass" class="gt_row gt_center">47.0 (46.0 - 48.0)</td></tr>
     <tr><th id="stub_1_3" scope="row" class="gt_row gt_center gt_stub">Hazel</th>
 <td headers="Female characters stub_1_3 tbv_height" class="gt_row gt_center">178 (178 - 178)</td>
@@ -864,24 +888,24 @@ ones you wrote out in your draft.</p></li>
 to highlight how this approach can get tedious. First I need to get the
 table values I am interested in, which is the heights of males and
 females</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>starwars_inline_female_brown_height <span class="ot">&lt;-</span> starwars_tbl <span class="sc">%&gt;%</span> </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">&#39;female&#39;</span>, eye_color <span class="sc">==</span> <span class="st">&#39;brown&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(tbv_height)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>starwars_inline_female_blue_height <span class="ot">&lt;-</span> starwars_tbl <span class="sc">%&gt;%</span> </span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">&#39;female&#39;</span>, eye_color <span class="sc">==</span> <span class="st">&#39;blue&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(tbv_height)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>starwars_inline_female_hazel_height <span class="ot">&lt;-</span> starwars_tbl <span class="sc">%&gt;%</span> </span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">&#39;female&#39;</span>, eye_color <span class="sc">==</span> <span class="st">&#39;hazel&#39;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(tbv_height)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>starwars_inline_female_brown_height <span class="ot">&lt;-</span> starwars_tbl <span class="sc">%&gt;%</span> </span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">&#39;female&#39;</span>, eye_color <span class="sc">==</span> <span class="st">&#39;brown&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>  <span class="fu">pull</span>(tbv_height)</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a>starwars_inline_female_blue_height <span class="ot">&lt;-</span> starwars_tbl <span class="sc">%&gt;%</span> </span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">&#39;female&#39;</span>, eye_color <span class="sc">==</span> <span class="st">&#39;blue&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a>  <span class="fu">pull</span>(tbv_height)</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a>starwars_inline_female_hazel_height <span class="ot">&lt;-</span> starwars_tbl <span class="sc">%&gt;%</span> </span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a>  <span class="fu">filter</span>(sex <span class="sc">==</span> <span class="st">&#39;female&#39;</span>, eye_color <span class="sc">==</span> <span class="st">&#39;hazel&#39;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a>  <span class="fu">pull</span>(tbv_height)</span></code></pre></div>
 <p>Now I have all I need to write my sentence:</p>
 <p>“Female characters in Starwars with hazel eye color were, on average,
 taller than their counterparts with blue or brown eyes. The median
 (25<sup>th</sup>, 75<sup>th</sup> percentile) heights of these groups
-were 178 (178 - 178) for hazel, 166 (166 - 168) for blue, and 158 (154 -
-161) for brown eyed female characters.”</p>
+were 178 (178 - 178) for hazel, 166 (166 - 168) for blue, and 168 (159 -
+176) for brown eyed female characters.”</p>
 <p>The great thing about writing results inline is that it drastically
 reduces the chance of a copy/paste error, which can get your paper
 rejected before it even goes out to reviewers. However, this approach
@@ -912,61 +936,61 @@ inline object will actually name itself!</p></li>
 <p><code>table.glue</code> provides a function to make your inline
 object. Assuming you have put your data into a tidy table format, this
 is all you need.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>starwars_inline <span class="ot">&lt;-</span> starwars_tbl <span class="sc">%&gt;%</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_inline</span>(<span class="at">tbl_variables =</span> <span class="fu">c</span>(<span class="st">&quot;sex&quot;</span>, <span class="st">&quot;eye_color&quot;</span>),</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">tbl_values =</span> <span class="fu">c</span>(<span class="st">&quot;tbv_height&quot;</span>, <span class="st">&quot;tbv_mass&quot;</span>))</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(starwars_inline)</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $female</span></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $female$blue</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $female$blue$tbv_height</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;166 (166 - 168)&quot;</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $female$blue$tbv_mass</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;56.2 (53.1 - 65.6)&quot;</span></span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $female$brown</span></span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $female$brown$tbv_height</span></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;158 (154 - 161)&quot;</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $female$brown$tbv_mass</span></span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;47.0 (46.0 - 48.0)&quot;</span></span>
-<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $female$hazel</span></span>
-<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $female$hazel$tbv_height</span></span>
-<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;178 (178 - 178)&quot;</span></span>
-<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $female$hazel$tbv_mass</span></span>
-<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;55.0 (55.0 - 55.0)&quot;</span></span>
-<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $male</span></span>
-<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $male$blue</span></span>
-<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $male$blue$tbv_height</span></span>
-<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;178 (175 - 188)&quot;</span></span>
-<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $male$blue$tbv_mass</span></span>
-<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;84.0 (79.0 - 112)&quot;</span></span>
-<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $male$brown</span></span>
-<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $male$brown$tbv_height</span></span>
-<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;183 (179 - 184)&quot;</span></span>
-<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $male$brown$tbv_mass</span></span>
-<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;79.5 (78.8 - 81.0)&quot;</span></span>
-<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $male$hazel</span></span>
-<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $male$hazel$tbv_height</span></span>
-<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;170 (170 - 170)&quot;</span></span>
-<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; $male$hazel$tbv_mass</span></span>
-<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;77.0 (77.0 - 77.0)&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>starwars_inline <span class="ot">&lt;-</span> starwars_tbl <span class="sc">%&gt;%</span> </span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>  <span class="fu">as_inline</span>(<span class="at">tbl_variables =</span> <span class="fu">c</span>(<span class="st">&quot;sex&quot;</span>, <span class="st">&quot;eye_color&quot;</span>),</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>            <span class="at">tbl_values =</span> <span class="fu">c</span>(<span class="st">&quot;tbv_height&quot;</span>, <span class="st">&quot;tbv_mass&quot;</span>))</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="fu">print</span>(starwars_inline)</span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co">#&gt; $female</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt; $female$blue</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">#&gt; $female$blue$tbv_height</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">#&gt; [1] &quot;166 (166 - 168)&quot;</span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co">#&gt; $female$blue$tbv_mass</span></span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="co">#&gt; [1] &quot;56.2 (53.1 - 65.6)&quot;</span></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="co">#&gt; $female$brown</span></span>
+<span id="cb6-17"><a href="#cb6-17" tabindex="-1"></a><span class="co">#&gt; $female$brown$tbv_height</span></span>
+<span id="cb6-18"><a href="#cb6-18" tabindex="-1"></a><span class="co">#&gt; [1] &quot;168 (159 - 176)&quot;</span></span>
+<span id="cb6-19"><a href="#cb6-19" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-20"><a href="#cb6-20" tabindex="-1"></a><span class="co">#&gt; $female$brown$tbv_mass</span></span>
+<span id="cb6-21"><a href="#cb6-21" tabindex="-1"></a><span class="co">#&gt; [1] &quot;47.0 (46.0 - 48.0)&quot;</span></span>
+<span id="cb6-22"><a href="#cb6-22" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-23"><a href="#cb6-23" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-24"><a href="#cb6-24" tabindex="-1"></a><span class="co">#&gt; $female$hazel</span></span>
+<span id="cb6-25"><a href="#cb6-25" tabindex="-1"></a><span class="co">#&gt; $female$hazel$tbv_height</span></span>
+<span id="cb6-26"><a href="#cb6-26" tabindex="-1"></a><span class="co">#&gt; [1] &quot;178 (178 - 178)&quot;</span></span>
+<span id="cb6-27"><a href="#cb6-27" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-28"><a href="#cb6-28" tabindex="-1"></a><span class="co">#&gt; $female$hazel$tbv_mass</span></span>
+<span id="cb6-29"><a href="#cb6-29" tabindex="-1"></a><span class="co">#&gt; [1] &quot;55.0 (55.0 - 55.0)&quot;</span></span>
+<span id="cb6-30"><a href="#cb6-30" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-31"><a href="#cb6-31" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-32"><a href="#cb6-32" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-33"><a href="#cb6-33" tabindex="-1"></a><span class="co">#&gt; $male</span></span>
+<span id="cb6-34"><a href="#cb6-34" tabindex="-1"></a><span class="co">#&gt; $male$blue</span></span>
+<span id="cb6-35"><a href="#cb6-35" tabindex="-1"></a><span class="co">#&gt; $male$blue$tbv_height</span></span>
+<span id="cb6-36"><a href="#cb6-36" tabindex="-1"></a><span class="co">#&gt; [1] &quot;178 (175 - 188)&quot;</span></span>
+<span id="cb6-37"><a href="#cb6-37" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-38"><a href="#cb6-38" tabindex="-1"></a><span class="co">#&gt; $male$blue$tbv_mass</span></span>
+<span id="cb6-39"><a href="#cb6-39" tabindex="-1"></a><span class="co">#&gt; [1] &quot;84.0 (79.0 - 112)&quot;</span></span>
+<span id="cb6-40"><a href="#cb6-40" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-41"><a href="#cb6-41" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-42"><a href="#cb6-42" tabindex="-1"></a><span class="co">#&gt; $male$brown</span></span>
+<span id="cb6-43"><a href="#cb6-43" tabindex="-1"></a><span class="co">#&gt; $male$brown$tbv_height</span></span>
+<span id="cb6-44"><a href="#cb6-44" tabindex="-1"></a><span class="co">#&gt; [1] &quot;183 (179 - 184)&quot;</span></span>
+<span id="cb6-45"><a href="#cb6-45" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-46"><a href="#cb6-46" tabindex="-1"></a><span class="co">#&gt; $male$brown$tbv_mass</span></span>
+<span id="cb6-47"><a href="#cb6-47" tabindex="-1"></a><span class="co">#&gt; [1] &quot;79.5 (78.8 - 81.0)&quot;</span></span>
+<span id="cb6-48"><a href="#cb6-48" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-49"><a href="#cb6-49" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-50"><a href="#cb6-50" tabindex="-1"></a><span class="co">#&gt; $male$hazel</span></span>
+<span id="cb6-51"><a href="#cb6-51" tabindex="-1"></a><span class="co">#&gt; $male$hazel$tbv_height</span></span>
+<span id="cb6-52"><a href="#cb6-52" tabindex="-1"></a><span class="co">#&gt; [1] &quot;170 (170 - 170)&quot;</span></span>
+<span id="cb6-53"><a href="#cb6-53" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb6-54"><a href="#cb6-54" tabindex="-1"></a><span class="co">#&gt; $male$hazel$tbv_mass</span></span>
+<span id="cb6-55"><a href="#cb6-55" tabindex="-1"></a><span class="co">#&gt; [1] &quot;77.0 (77.0 - 77.0)&quot;</span></span></code></pre></div>
 <p>Some nice things about this:</p>
 <ol style="list-style-type: decimal">
 <li><p>We have <em>all</em> the table data in one place, so updating our
@@ -987,17 +1011,17 @@ tables and make them into one inline object. (see below)</p></li>
 (instead of twenty) inline objects. For the sake of keeping this brief,
 let’s just duplicate the first inline object and then show how
 concatenation would work:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>other_inline <span class="ot">&lt;-</span> starwars_inline</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>other_inline <span class="ot">&lt;-</span> starwars_inline</span></code></pre></div>
 <p>Now the concatenation:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>inline <span class="ot">=</span> <span class="fu">list</span>(<span class="at">starwars =</span> starwars_inline,</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">other =</span> other_inline)</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="co"># now you can access all your table data in one place. Happy writing!</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>inline<span class="sc">$</span>starwars<span class="sc">$</span>female<span class="sc">$</span>blue<span class="sc">$</span>tbv_height</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;166 (166 - 168)&quot;</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>inline<span class="sc">$</span>other<span class="sc">$</span>male<span class="sc">$</span>blue<span class="sc">$</span>tbv_height</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;178 (175 - 188)&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>inline <span class="ot">=</span> <span class="fu">list</span>(<span class="at">starwars =</span> starwars_inline,</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>              <span class="at">other =</span> other_inline)</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="co"># now you can access all your table data in one place. Happy writing!</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a>inline<span class="sc">$</span>starwars<span class="sc">$</span>female<span class="sc">$</span>blue<span class="sc">$</span>tbv_height</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="co">#&gt; [1] &quot;166 (166 - 168)&quot;</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a>inline<span class="sc">$</span>other<span class="sc">$</span>male<span class="sc">$</span>blue<span class="sc">$</span>tbv_height</span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="co">#&gt; [1] &quot;178 (175 - 188)&quot;</span></span></code></pre></div>
 </div>
 
 

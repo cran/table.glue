@@ -354,31 +354,31 @@ rounding specification is based on the global options of your current R
 session. So to make a particular rounding specification the default
 specification, all you need to do is set your global options using the
 specification of your choice.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(table.glue)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(table.glue)</span></code></pre></div>
 </div>
 <div id="step-1---make-your-rounding-specification" class="section level2">
 <h2>Step 1 - Make your rounding specification</h2>
 <p>Any rounding specification will do.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>rspec <span class="ot">&lt;-</span> <span class="fu">round_spec</span>() </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>rspec <span class="ot">&lt;-</span> <span class="fu">round_using_decimal</span>(rspec, <span class="at">digits =</span> <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>rspec <span class="ot">&lt;-</span> <span class="fu">round_spec</span>() </span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>rspec <span class="ot">&lt;-</span> <span class="fu">round_using_decimal</span>(rspec, <span class="at">digits =</span> <span class="dv">5</span>)</span></code></pre></div>
 </div>
 <div id="step-2---modify-specification-names" class="section level2">
 <h2>Step 2 - Modify specification names</h2>
 <p>Modify each name so that it starts with ‘table.glue’. This protects
 you from mistakenly changing other package options.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(rspec) <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&#39;table.glue&#39;</span>, <span class="fu">names</span>(rspec), <span class="at">sep =</span> <span class="st">&#39;.&#39;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">names</span>(rspec) <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&#39;table.glue&#39;</span>, <span class="fu">names</span>(rspec), <span class="at">sep =</span> <span class="st">&#39;.&#39;</span>)</span></code></pre></div>
 </div>
 <div id="step-3---pass-to-options." class="section level2">
 <h2>Step 3 - Pass to options.</h2>
 <p>All you need to do now is use the <code>options()</code>
 function.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(rspec)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">table_value</span>(pi)</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;3.14159&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">options</span>(rspec)</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="fu">table_value</span>(pi)</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co">#&gt; [1] &quot;3.14159&quot;</span></span></code></pre></div>
 </div>
 <div id="step-4---revert" class="section level2">
 <h2>Step 4 - Revert!</h2>
@@ -386,15 +386,15 @@ function.</p>
 normal by setting <code>force_default = TRUE</code> in a new
 <code>round_spec()</code> function, and then repeating steps 2 and
 3.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>back_to_normal <span class="ot">&lt;-</span> <span class="fu">round_spec</span>(<span class="at">force_default =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(back_to_normal) <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&#39;table.glue&#39;</span>, <span class="fu">names</span>(back_to_normal), <span class="at">sep =</span> <span class="st">&#39;.&#39;</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(back_to_normal)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">table_value</span>(pi)</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] &quot;3.1&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>back_to_normal <span class="ot">&lt;-</span> <span class="fu">round_spec</span>(<span class="at">force_default =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="fu">names</span>(back_to_normal) <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">&#39;table.glue&#39;</span>, <span class="fu">names</span>(back_to_normal), <span class="at">sep =</span> <span class="st">&#39;.&#39;</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="fu">options</span>(back_to_normal)</span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="fu">table_value</span>(pi)</span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co">#&gt; [1] &quot;3.1&quot;</span></span></code></pre></div>
 </div>
 
 
