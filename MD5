@@ -1,7 +1,7 @@
-ed90a84fa3d712a6aff437d96a5bc5dd *DESCRIPTION
+fe3d97134a5731888bec836ef7f2ed3b *DESCRIPTION
 f1d32993b17068914ee877039d84036b *LICENSE
 1abd97b7de9ac53df93c0058cd98d6b1 *NAMESPACE
-8d33587dd0e8255f452a47e29092532c *NEWS.md
+4a85102ea5e654b5308f1fae7751a55e *NEWS.md
 51c62a92141a20f701da9e6de8240f8f *R/as_inline.R
 1d322b9803d2e8bd60b0f463d5ff4129 *R/bracket_helpers.R
 e9602dd9da53cc60544daa5d2d333f55 *R/check_args.R
@@ -12,7 +12,7 @@ a6e5f3a1732fc6fb219bf55ac5d065aa *R/nhanes.R
 48285ba474594044f9378ea506fffee8 *R/table_ester.R
 6722aee0c0dc922613bc025ecd8fbf36 *R/table_glue.R
 0e8902798b1ccfca93dbd9a7102821ea *R/table_pvalue.R
-3b3bcea0baa632dd4851fa0dad8d712d *R/table_value.R
+dc9e4e5d3f142b409c03d9678680604f *R/table_value.R
 9abd8e6193b249ee3aea25ece0ab5c80 *README.md
 8f628b5293a5dabe6d7256a16dd0fe46 *build/vignette.rds
 7f706031805d90aac4f2c6db3be67537 *data/nhanes.rda
@@ -21,7 +21,7 @@ a6e5f3a1732fc6fb219bf55ac5d065aa *R/nhanes.R
 7ba9537e6424cdfb7cd252b395b92c03 *inst/doc/default_rounder.html
 fe3e1a3159941e77d2ba7a52970cdeaf *inst/doc/table_guide.R
 87b377a0dc7508c73a3d17eacc19428e *inst/doc/table_guide.Rmd
-138f5ec0967a918ec03388f49be42c9a *inst/doc/table_guide.html
+baca4c48210598b0d90f9875a466e221 *inst/doc/table_guide.html
 2cf1efd108e2c9c5256ee4b155132f61 *man/as_inline.Rd
 f05c82893dcef22ea5deb5530f1f6145 *man/bracket_drop.Rd
 502a5f8dd6ba90060101596366cb7d58 *man/figures/README-pressure-1.png
